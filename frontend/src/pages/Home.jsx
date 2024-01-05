@@ -13,11 +13,12 @@ import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 import About from '../components/About/About';
 import ServiceList from '../components/Services/ServiceList';
+import DoctorList from '../components/Doctors/DoctorList';
 
 const Home = () => {
   return (
     <>
-      {/*----- Hero section------- */}
+      {/*----- Hero section start------- */}
       <section className="hero__section pt-[60px] 2xl:h-[800px]">
         <div className="container">
           <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
@@ -230,7 +231,9 @@ const Home = () => {
 
                 <div className="flex items-center gap-[6px] lg:gap-[10px] mt-2 lg:mt-[18px]">
                   <img src={avatarIcon} alt="" />
-                  <h4 className="text-[10px] leading-3 lg:text-[16px] lg:leading-[22px] font-[700] text-headingColor">Wayne Collins</h4>
+                  <h4 className="text-[10px] leading-3 lg:text-[16px] lg:leading-[22px] font-[700] text-headingColor">
+                    Wayne Collins
+                  </h4>
                 </div>
               </div>
             </div>
@@ -238,6 +241,22 @@ const Home = () => {
         </div>
       </section>
       {/* ----------------feature section end----------------*/}
+
+      {/* -------------------featured doctor start--------------- */}
+      <section>
+        <div className="container">
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="heading text-center">Our featured doctor</h2>
+            <p className="text__para text-center">
+              World-class care for everyone. Our health System offers unmatched,
+              expert health care.
+            </p>
+          </div>
+
+          <DoctorList />
+        </div>
+      </section>
+      {/* -------------------featured doctor start--------------- */}
     </>
   );
 };
