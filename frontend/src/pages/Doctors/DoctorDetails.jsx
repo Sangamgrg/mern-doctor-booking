@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import doctorImg from '../../assets/images/doctor-img02.png';
-import starIcon from '../../assets/images/star.png';
+import starIcon from '../../assets/images/Star.png';
 import Feedback from '../../components/Doctors/Feedback';
 import DoctorAbout from '../../components/Doctors/DoctorAbout';
 
