@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import doctorImg from '../../assets/images/doctor-img02.png';
 import starIcon from '../../assets/images/Star.png';
-<<<<<<< HEAD
+
 import Feedback from './Feedback';
 import DoctorAbout from './DoctorAbout';
-=======
-import Feedback from '../../components/Doctors/Feedback';
-import DoctorAbout from '../../components/Doctors/DoctorAbout';
->>>>>>> 276c35a706f895f23fabe0155af263cc389e8ce5
 
 const DoctorDetails = () => {
   const [tab, setTab] = useState('about');
