@@ -20,7 +20,7 @@ const Doctors = () => {
                 'margin-top': 0,
                 'border-radius': 0,
                 'border-top-right-radius': '0.375rem',
-                'border--right-radius': '0.375rem',
+                'border-bottom-right-radius': '0.375rem',
               }}>
               Search
             </button>
