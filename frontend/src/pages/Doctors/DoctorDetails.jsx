@@ -5,7 +5,6 @@ import starIcon from '../../assets/images/Star.png';
 import Feedback from './Feedback';
 import DoctorAbout from './DoctorAbout';
 
-
 const DoctorDetails = () => {
   const [tab, setTab] = useState('about');
   return (
