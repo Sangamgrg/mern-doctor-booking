@@ -8,7 +8,12 @@ import {
 
 import { authenticate, restrict } from '../auth/verifyToken.js';
 
+import reviewRouter from './review.js';
+
 const router = express.Router();
+
+//nested route for reviews for each doctor
+router.use('/:id/reviews', reviewRouter);
 
 router.get('/:id', getSingleDoctor);
 router.get('/', getAllDoctor);
