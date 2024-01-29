@@ -46,7 +46,6 @@ export const restrict = (roles) => async (req, res, next) => {
     user = doctor;
   }
 
-  console.log(req.userId);
   if (!roles.includes(user.role)) {
     return res
       .status(401)
