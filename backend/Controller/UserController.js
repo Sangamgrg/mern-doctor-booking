@@ -1,4 +1,6 @@
 import User from '../models/UserSchema.js';
+import Booking from '../models/UserSchema.js';
+import Doctor from '../models/DoctorSchema.js';
 
 export const updateUser = async (req, res) => {
   const id = req.params.id;
@@ -103,5 +105,31 @@ export const getUserProfile = async (req, res) => {
     res
       .status(500)
       .json({ success: false, message: 'Something went wrong, cannot get' });
+  }
+};
+
+export const getMyAppoinments = async (req, res) => {
+  try {
+    //Step-1: retrieve appts from booking for specific user
+    const bookings = await Booking.find({ user: req.userId });
+
+    //Step-2: extract doctor ids from appt bookings
+    const doctorIds = bookings.map((el) => el.doctor.id);
+
+    //Step-3: retrieve doctors using doctors id
+    const doctors = await Doctor.find({ _id: { $in: doctorIds } }).select(
+      '-password'
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'Appoinments are getting',
+      data: doctors,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong, cannot get',
+    });
   }
 };
