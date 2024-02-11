@@ -186,14 +186,16 @@ const Signup = () => {
                   )}
                 </button>
               </div>
-            </form>
 
-            <p className="mt-5 text-textColor text-center">
-              Already have an account?
-              <Link to="/login" className="text-primaryColor font-medium ml-1">
-                Login
-              </Link>
-            </p>
+              <p className="mt-5 text-textColor text-center">
+                Already have an account?
+                <Link
+                  to="/login"
+                  className="text-primaryColor font-medium ml-1">
+                  Login
+                </Link>
+              </p>
+            </form>
           </div>
         </div>
       </div>
