@@ -1,5 +1,5 @@
 import User from '../models/UserSchema.js';
-import Booking from '../models/UserSchema.js';
+import Booking from '../models/BookingSchema.js';
 import Doctor from '../models/DoctorSchema.js';
 
 export const updateUser = async (req, res) => {
@@ -108,7 +108,7 @@ export const getUserProfile = async (req, res) => {
   }
 };
 
-export const getMyAppoinments = async (req, res) => {
+export const getMyAppointments = async (req, res) => {
   try {
     //Step-1: retrieve appts from booking for specific user
     const bookings = await Booking.find({ user: req.userId });
@@ -123,7 +123,7 @@ export const getMyAppoinments = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: 'Appoinments are getting',
+      message: 'Appointments are getting',
       data: doctors,
     });
   } catch (err) {
