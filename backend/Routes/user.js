@@ -5,7 +5,7 @@ import {
   getAllUser,
   getSingleUser,
   getUserProfile,
-  getMyAppoinments,
+  getMyAppointments,
 } from '../Controller/userController.js';
 
 import { authenticate, restrict } from '../auth/verifyToken.js';
@@ -18,10 +18,10 @@ router.put('/:id', authenticate, restrict(['patient']), updateUser);
 router.delete('/:id', authenticate, restrict(['patient']), deleteUser);
 router.get('/profile/me', authenticate, restrict(['patient']), getUserProfile);
 router.get(
-  'appoinments/my-appoinments',
+  'appointments/my-appointments',
   authenticate,
   restrict(['patient']),
-  getMyAppoinments
+  getMyAppointments
 );
 
 export default router;
