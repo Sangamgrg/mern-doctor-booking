@@ -27,7 +27,7 @@ const MyBookings = () => {
 
       {!loading && !error && appointments.length === 0 && (
         <h2 className="mt-5 text-center leading-7 text-[20px] font-semibold text-primaryColor">
-          You didn't have any upcoming doctor appointments!
+          You don't have any upcoming doctor appointments!
         </h2>
       )}
     </div>
