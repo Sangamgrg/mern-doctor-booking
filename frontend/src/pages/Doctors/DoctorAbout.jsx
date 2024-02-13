@@ -1,6 +1,6 @@
 import { formatDate } from '../../utils/formatDate';
 
-const DoctorAbout = () => {
+const DoctorAbout = ({ name, about, qualifications, experiences }) => {
   return (
     <div>
       <div>
@@ -58,7 +58,7 @@ const DoctorAbout = () => {
           Experience
         </h3>
 
-        <ul className="grid sm:grcol2 gap-[30px] pt-4 md:p-5">
+        <ul className="grid sm:grid-cols-2 gap-[30px] pt-4 md:p-5">
           <li className="p-4 rounded bg-[#fff9ea]">
             <span className="text-yellowColor text-[15px] leading-6 font-semibold">
               {formatDate('6-13-2010')} - {formatDate('10-13-2014')}
