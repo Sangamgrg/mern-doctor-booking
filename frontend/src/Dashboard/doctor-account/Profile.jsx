@@ -1,23 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 
 import uploadImageToCloudinary from './../../utils/uploadCloudinary';
+import { BASE_URL, token } from './../../config.js';
+import { toast } from 'react-toastify';
 
-const Profile = () => {
+const Profile = ({ doctorData }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    password: '',
     phone: '',
     bio: '',
     gender: '',
     specialization: '',
     ticketPrice: 0,
     qualifications: [],
-    experience: [],
+    experiences: [],
     timeSlots: [],
     about: '',
     photo: null,
   });
+
+  useEffect(() => {
+    setFormData({
+      name: doctorData?.name,
+      email: doctorData?.email,
+      phone: doctorData?.phone,
+      bio: doctorData?.bio,
+      gender: doctorData?.gender,
+      specialization: doctorData?.specialization,
+      ticketPrice: doctorData?.ticketPrice,
+      qualifications: doctorData?.qualifications,
+      experiences: doctorData?.experiences,
+      timeSlots: doctorData?.timeSlots,
+      about: doctorData?.about,
+      photo: doctorData?.photo,
+    });
+  }, [doctorData]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,6 +52,29 @@ const Profile = () => {
 
   const updateProfileHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log(token);
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw Error(result.message);
+      }
+
+      toast.success(result.message);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   //reusable function for adding item
@@ -156,7 +199,7 @@ const Profile = () => {
             className="form__input"
             readOnly
             aria-readonly
-            disabled="true"
+            disabled={true}
           />
         </div>
         <div className="mb-5">
