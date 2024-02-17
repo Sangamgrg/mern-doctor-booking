@@ -5,9 +5,30 @@ import { BASE_URL } from '../../config';
 import useFetchData from '../../hooks/useFetchData';
 import Loader from '../../components/Loader/Loading';
 import Error from '../../components/Error/Error';
+import { useEffect, useState } from 'react';
 
 const Doctors = () => {
-  const { data: doctors, loading, error } = useFetchData(`${BASE_URL}/doctors`);
+  const [query, setQuery] = useState('');
+  const [debounceQuery, setDebounceQuery] = useState('');
+
+  const handleSearch = () => {
+    setQuery(query.trim());
+
+    console.log('handle search');
+  };
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setDebounceQuery(query);
+    }, 700);
+    return () => clearTimeout(timeOut);
+  }, [query]);
+
+  const {
+    data: doctors,
+    loading,
+    error,
+  } = useFetchData(`${BASE_URL}/doctors?query=${debounceQuery}`);
 
   return (
     <>
@@ -19,9 +40,12 @@ const Doctors = () => {
               type="search"
               className="py-4 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer placeholder:text-textColor"
               placeholder="Search doctor by name or specification"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
             <button
               className="btn"
+              onClick={handleSearch}
               style={{
                 'margin-top': 0,
                 'border-radius': 0,
