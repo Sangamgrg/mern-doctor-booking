@@ -1,16 +1,51 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
+import { useParams } from 'react-router-dom';
+import { BASE_URL, token } from '../../config';
+import HashLoader from 'react-spinners/HashLoader';
+import { toast } from 'react-toastify';
 
 const FeedbackForm = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [reviewText, setReviewText] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const { id } = useParams();
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    //later we will use our api
+    try {
+      if (!rating || !reviewText) {
+        setLoading(false);
+        return toast.error('Rating & review fields are required');
+      }
+
+      const res = await fetch(`${BASE_URL}/doctors/${id}/reviews`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ rating, reviewText }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message);
+      }
+
+      setLoading(false);
+      toast.success(result.message);
+    } catch (err) {
+      setLoading(false);
+      toast.error(err.message);
+    }
   };
+
   return (
     <form action="">
       <div>
@@ -56,11 +91,11 @@ const FeedbackForm = () => {
           className="border border-solid border-[#0066ff34] focus:outline outline-primaryColor w-full px-4 py-3 rounded-md"
           rows="5"
           placeholder="Write your reviews"
-          onChange={() => setReviewText(e.target.value)}></textarea>
+          onChange={(e) => setReviewText(e.target.value)}></textarea>
       </div>
 
       <button type="submit" onClick={handleSubmitReview} className="btn">
-        Submit Feedback
+        {loading ? <HashLoader size={25} color="#FFF" /> : 'Submit Feedback'}
       </button>
     </form>
   );
