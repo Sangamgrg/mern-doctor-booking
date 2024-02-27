@@ -25,10 +25,10 @@ const Appointments = ({ appointments }) => {
 
       <tbody>
         {appointments?.map((item) => (
-          <tr key={item.id}>
+          <tr key={item._id}>
             <th
               scope="row"
-              className="flex items-center px-6 px-4 text-gray-900 whitespace-nowrap">
+              className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
               <img
                 src={item.user.photo}
                 className="w-10 h-10 rounded-full"

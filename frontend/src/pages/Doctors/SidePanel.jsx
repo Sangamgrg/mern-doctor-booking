@@ -18,7 +18,8 @@ const SidePanel = ({ doctorId, ticketPrice, timeSlots }) => {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message + 'Please try again');
+        // throw new Error(data.message + 'Please try again');
+        toast.error(data.message + ', please try again');
       }
 
       if (data.session.url) {

@@ -37,8 +37,11 @@ const Home = () => {
                   quibusdam doloremque eveniet incidunt. Ullam, aut? Quibusdam
                   beatae a velit. Asperiores tenetur assumenda similique saepe!
                 </p>
-
-                <button className="btn">Request an appoinment</button>
+                <div className="mt-14">
+                  <Link to="/doctors" className="btn">
+                    Request an appointment
+                  </Link>
+                </div>
               </div>
 
               {/* hero content */}
