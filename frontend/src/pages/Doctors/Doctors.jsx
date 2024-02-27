@@ -47,10 +47,10 @@ const Doctors = () => {
               className="btn"
               onClick={handleSearch}
               style={{
-                'margin-top': 0,
-                'border-radius': 0,
-                'border-top-right-radius': '0.375rem',
-                'border-bottom-right-radius': '0.375rem',
+                marginTop: 0,
+                borderRadius: 0,
+                borderTopRightRadius: '0.375rem',
+                borderBottomRightRadius: '0.375rem',
               }}>
               Search
             </button>
@@ -64,8 +64,8 @@ const Doctors = () => {
 
         {!loading && !error && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {doctors.map((doctor) => (
-              <DoctorCard key={doctor.id} doctor={doctor} />
+            {doctors.map((doctor, index) => (
+              <DoctorCard key={index} doctor={doctor} />
             ))}
           </div>
         )}

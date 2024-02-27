@@ -84,7 +84,7 @@ const Header = () => {
               <div>
                 <Link
                   to={
-                    `$role==='doctor`
+                    role === 'doctor'
                       ? '/doctors/profile/me'
                       : '/users/profile/me'
                   }>
