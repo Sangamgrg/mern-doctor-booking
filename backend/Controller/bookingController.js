@@ -49,8 +49,9 @@ export const getCheckoutSession = async (req, res) => {
       .status(200)
       .json({ success: true, message: 'Successfully paid', session });
   } catch (err) {
+    console.log(err);
     res
-      .Status(500)
+      .status(500)
       .json({ success: false, message: 'Error creating checkout session' });
   }
 };
